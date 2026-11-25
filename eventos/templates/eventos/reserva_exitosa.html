@@ -1,0 +1,29 @@
+{% extends 'eventos/base.html' %}
+
+{% block titulo %}Solicitud registrada | LUMINOVA{% endblock %}
+
+{% block contenido %}
+
+<section class="section container">
+    <div class="form-card success-card">
+        <div class="success-symbol">✦</div>
+        <h1>¡Solicitud registrada!</h1>
+
+        <p>
+            Hemos registrado tu solicitud de entradas.
+            Su estado inicial es pendiente.
+        </p>
+
+        <p>
+            Esta es una demostración académica.
+            No se han emitido entradas ni procesado pagos.
+        </p>
+
+        <a class="btn btn-primary"
+           href="{% url 'eventos:catalogo' %}">
+            Explorar más eventos
+        </a>
+    </div>
+</section>
+
+{% endblock %}

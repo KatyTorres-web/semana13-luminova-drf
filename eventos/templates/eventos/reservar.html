@@ -1,0 +1,41 @@
+{% extends 'eventos/base.html' %}
+
+{% block titulo %}Reservar | LUMINOVA{% endblock %}
+
+{% block contenido %}
+
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">SECURE YOUR EXPERIENCE</span>
+        <h1>Reserva tu experiencia 🎟️</h1>
+        <p>{{ evento.titulo }}</p>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="form-card">
+
+        <h2>Solicitud de entradas</h2>
+
+        <p>
+            Evento: <strong>{{ evento.titulo }}</strong>
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="btn btn-primary" type="submit">
+                Registrar solicitud
+            </button>
+        </form>
+
+        <p class="form-note">
+            La reserva quedará pendiente de confirmación.
+            No se realiza ningún cobro.
+        </p>
+    </div>
+</section>
+
+{% endblock %}

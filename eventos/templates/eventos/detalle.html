@@ -1,0 +1,52 @@
+{% extends 'eventos/base.html' %}
+
+{% block titulo %}{{ evento.titulo }} | LUMINOVA{% endblock %}
+
+{% block contenido %}
+
+<section class="section container detail-layout">
+
+    <div class="detail-art art-{{ evento.categoria.slug }}">
+        <span>{{ evento.categoria.icono }}</span>
+        <p>{{ evento.categoria.nombre }}</p>
+    </div>
+
+    <div class="detail-info">
+        <span class="eyebrow">
+            ✦ {{ evento.categoria.nombre|upper }}
+        </span>
+
+        <h1>{{ evento.titulo }}</h1>
+        <p>{{ evento.descripcion }}</p>
+
+        <div class="detail-facts">
+            <p>📅 {{ evento.fecha|date:"d/m/Y - H:i" }}</p>
+            <p>📍 {{ evento.lugar }}, {{ evento.ciudad }}</p>
+            <p>🎟️ Capacidad: {{ evento.capacidad }}</p>
+            <p>✨ Cupos disponibles: {{ evento.cupos_disponibles }}</p>
+        </div>
+
+        <div class="detail-price">
+            S/ {{ evento.precio|floatformat:2 }}
+        </div>
+
+        {% if evento.es_futuro and evento.cupos_disponibles > 0 %}
+            <a class="btn btn-primary"
+               href="{% url 'eventos:reservar' evento.slug %}">
+                Solicitar entradas
+            </a>
+        {% else %}
+            <p class="notice">Reservas no disponibles.</p>
+        {% endif %}
+
+        <p>
+            <a class="text-link"
+               href="{% url 'eventos:catalogo' %}">
+                ← Volver a eventos
+            </a>
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}

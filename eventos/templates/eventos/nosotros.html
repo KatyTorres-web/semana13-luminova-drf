@@ -1,0 +1,42 @@
+{% extends 'eventos/base.html' %}
+
+{% block titulo %}Nosotros | LUMINOVA{% endblock %}
+
+{% block contenido %}
+
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">WHO WE ARE</span>
+        <h1>Más allá de lo ordinario</h1>
+        <p>La creatividad se encuentra con la experiencia.</p>
+    </div>
+</section>
+
+<section class="section container about-content">
+    <div class="about-art">✧</div>
+
+    <div>
+        <span class="eyebrow">OUR UNIVERSE</span>
+
+        <h2>Bienvenido a LUMINOVA</h2>
+
+        <p>
+            LUMINOVA es una plataforma ficticia para
+            explorar eventos musicales, artísticos y
+            experiencias inmersivas.
+        </p>
+
+        <p>
+            Este proyecto demuestra la integración de
+            Django, SQLite y una API RESTful mediante
+            Django REST Framework.
+        </p>
+
+        <a class="btn btn-primary"
+           href="{% url 'eventos:catalogo' %}">
+            Explorar eventos
+        </a>
+    </div>
+</section>
+
+{% endblock %}

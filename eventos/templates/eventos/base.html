@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}LUMINOVA{% endblock %}</title>
+    <link rel="stylesheet"
+          href="{% static 'eventos/css/styles.css' %}">
+</head>
+<body>
+
+<header class="site-header">
+    <nav class="container navbar">
+        <a class="brand"
+           href="{% url 'eventos:inicio' %}">
+            ✦ LUMI<span>NOVA</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="{% url 'eventos:inicio' %}">Inicio</a>
+            <a href="{% url 'eventos:catalogo' %}">Eventos</a>
+            <a href="{% url 'eventos:catalogo' %}">Experiencias</a>
+            <a href="{% url 'eventos:nosotros' %}">Nosotros</a>
+            <a class="nav-cta"
+               href="{% url 'eventos:catalogo' %}">
+                Explorar ✨
+            </a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    {% if messages %}
+        <div class="container messages">
+            {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block contenido %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <h2>✦ LUMINOVA</h2>
+            <p>Experience the Extraordinary.</p>
+        </div>
+
+        <div>
+            <p>Explora. Descubre. Vive.</p>
+            <p>Proyecto académico — Django 5.x + DRF</p>
+        </div>
+    </div>
+    <p class="copyright">
+        © {% now "Y" %} LUMINOVA. Experiencias ficticias.
+    </p>
+</footer>
+
+</body>
+</html>

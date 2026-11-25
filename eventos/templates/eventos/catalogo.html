@@ -1,0 +1,79 @@
+{% extends 'eventos/base.html' %}
+
+{% block titulo %}Eventos | LUMINOVA{% endblock %}
+
+{% block contenido %}
+
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">EXPLORE THE UNEXPECTED</span>
+        <h1>Explora nuestros eventos ✨</h1>
+        <p>
+            Encuentra experiencias que despierten tus sentidos.
+        </p>
+    </div>
+</section>
+
+<section class="section container">
+
+    <form method="get" class="filter-bar">
+        <input
+            type="search"
+            name="q"
+            value="{{ busqueda }}"
+            placeholder="Buscar eventos o ciudades..."
+            aria-label="Buscar eventos">
+
+        <select name="categoria" aria-label="Categoría">
+            <option value="">Todas las categorías</option>
+
+            {% for categoria in categorias %}
+                <option value="{{ categoria.slug }}"
+                    {% if categoria_actual == categoria.slug %}selected{% endif %}>
+                    {{ categoria.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button class="btn btn-primary" type="submit">
+            Buscar
+        </button>
+    </form>
+
+    <div class="event-grid">
+        {% for evento in eventos %}
+            <article class="event-card">
+                <div class="event-art art-{{ evento.categoria.slug }}">
+                    <span>{{ evento.categoria.icono }}</span>
+                    <small>{{ evento.categoria.nombre }}</small>
+                </div>
+
+                <div class="event-content">
+                    <span class="eyebrow">
+                        {{ evento.fecha|date:"d M Y" }}
+                    </span>
+
+                    <h3>{{ evento.titulo }}</h3>
+
+                    <p>📍 {{ evento.ciudad }}</p>
+                    <p>{{ evento.descripcion|truncatewords:12 }}</p>
+
+                    <div class="event-bottom">
+                        <strong>S/ {{ evento.precio|floatformat:2 }}</strong>
+                        <a href="{{ evento.get_absolute_url }}">
+                            Ver evento →
+                        </a>
+                    </div>
+                </div>
+            </article>
+        {% empty %}
+            <div class="empty-state">
+                <h2>Sin resultados</h2>
+                <p>No encontramos eventos con esos filtros.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}
